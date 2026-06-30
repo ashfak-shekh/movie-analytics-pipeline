@@ -1,24 +1,13 @@
-# Airflow
 logs/
+profiles/
+.env
 airflow.db
 
-# Environment
-.env
+__pycache__/
+*.pyc
+venv/
+.venv/
 
-# dbt
 target/
 dbt/**/target/
 dbt/**/logs/
-
-# Snowflake profile
-profiles/
-
-# Python
-__pycache__/
-*.pyc
-.venv/
-venv/
-
-# OS
-.DS_Store
-Thumbs.db
