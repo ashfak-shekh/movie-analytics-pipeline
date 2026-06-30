@@ -2,13 +2,13 @@
 
 An end-to-end Data Engineering project that builds a scalable movie analytics pipeline using **Apache Airflow**, **dbt**, **Snowflake**, **Docker**, and **Python**.
 
-This project demonstrates modern ELT practices by ingesting raw movie datasets into Snowflake, transforming them using dbt, and orchestrating the complete workflow with Apache Airflow.
+This project demonstrates a modern end-to-end ELT pipeline that ingests movie datasets from AWS S3 into Snowflake, performs scalable transformations using dbt, and orchestrates the complete workflow with Apache Airflow and Cosmos.
 
 ---
 
 # 🚀 Tech Stack
 
-- Apache Airflow 2.10.5
+- Apache Airflow 3.2.2
 - dbt Core
 - dbt-snowflake
 - Snowflake
@@ -55,43 +55,45 @@ movie-analytics-pipeline/
 # 🏗️ Architecture
 
 ```
-Movie Dataset
-      │
-      ▼
-Python ETL
-      │
-      ▼
-Snowflake (Raw Tables)
-      │
-      ▼
-dbt Staging Models
-      │
-      ▼
+MovieLens Dataset
+        │
+        ▼
+AWS S3 (Raw Data Landing Zone)
+        │
+        ▼
+Airflow Ingestion DAG
+        │
+        ▼
+Snowflake RAW Layer
+        │
+        ▼
+Cosmos + dbt Build DAG
+        │
+        ▼
+Staging Models
+        │
+        ▼
 Dimension Models
-      │
-      ▼
+        │
+        ▼
 Fact Models
-      │
-      ▼
-Mart Models
-      │
-      ▼
-Analytics & Reporting
-```
+        │
+        ▼
+Analytics-ready Mart Models
 
-Apache Airflow orchestrates the entire workflow from ingestion to dbt transformations.
+Apache Airflow, integrated with Cosmos, orchestrates the ingestion pipeline and dbt transformation workflow.
 
 ---
 
 # 📊 Data Pipeline
 
-1. Load raw movie dataset.
-2. Create Snowflake tables.
-3. Ingest data into Snowflake.
-4. Execute dbt models.
-5. Run dbt tests.
-6. Build dimensional models.
-7. Create analytics-ready marts.
+1. Raw movie datasets are stored in AWS S3.
+2. Airflow Ingestion DAG loads data into Snowflake RAW tables.
+3. Cosmos triggers dbt transformations.
+4. dbt builds staging, dimension, fact, and mart models.
+5. dbt executes automated data quality tests.
+6. Snapshots capture historical changes.
+7. Analytics-ready tables are created in Snowflake.
 
 ---
 
@@ -182,14 +184,29 @@ http://localhost:8082
 
 # 📈 Features
 
-- End-to-End ELT Pipeline
-- Snowflake Data Warehouse
-- dbt Transformations
-- Airflow Orchestration
-- Dockerized Environment
-- Modular SQL Models
-- Automated Data Testing
-- Scalable Data Architecture
+✔ End-to-End ELT Pipeline
+
+✔ AWS S3 Data Landing Zone
+
+✔ Snowflake Data Warehouse
+
+✔ Apache Airflow Orchestration
+
+✔ Cosmos Integration
+
+✔ dbt Transformations
+
+✔ Incremental Models
+
+✔ SCD Type 2 Snapshots
+
+✔ Generic & Custom dbt Tests
+
+✔ dbt Documentation & Lineage
+
+✔ Dockerized Deployment
+
+✔ Modular SQL Models
 
 ---
 
@@ -221,12 +238,10 @@ dbt tests include:
 
 # 📌 Future Enhancements
 
-- Incremental Models
 - CI/CD using GitHub Actions
 - Data Quality Monitoring
 - Logging & Alerting
 - Unit Testing
-- SCD Type 2 Models
 - dbt Exposures
 - Production Deployment
 
@@ -236,13 +251,25 @@ dbt tests include:
 
 **Ashfak Shekh**
 
-- Data Engineer
-- Snowflake
-- dbt
-- Apache Airflow
-- Python
-- SQL
-- AWS
+Apache Airflow
+
+Cosmos
+
+dbt Core
+
+Snowflake
+
+AWS S3
+
+Docker
+
+Python
+
+SQL
+
+Git
+
+GitHub
 
 ---
 
