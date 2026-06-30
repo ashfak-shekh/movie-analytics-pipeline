@@ -1,0 +1,4 @@
+astronomer-cosmos
+dbt-core==1.11.11
+dbt-snowflake==1.8.4
+apache-airflow-providers-snowflake
