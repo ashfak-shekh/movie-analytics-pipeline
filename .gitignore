@@ -11,3 +11,7 @@ venv/
 target/
 dbt/**/target/
 dbt/**/logs/
+
+# dbt dependencies
+dbt_packages/
+dbt/**/dbt_packages/
