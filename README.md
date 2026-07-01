@@ -84,6 +84,38 @@ Analytics-ready Mart Models
 Apache Airflow, integrated with Cosmos, orchestrates the ingestion pipeline and dbt transformation workflow.
 
 ---
+# 📸 Screenshots
+
+## Airflow DAG Overview
+
+Shows the two Airflow DAGs used in the project.
+
+![Airflow DAGs](assets/airflow-dags.png)
+
+---
+
+## Movie Ingestion DAG
+
+This DAG loads raw movie datasets into Snowflake and triggers the dbt transformation pipeline.
+
+![Movie Ingestion DAG](assets/movie_ingestion_graph.png)
+
+---
+
+## dbt Build DAG
+
+This DAG uses Cosmos to orchestrate dbt models, tests, snapshots, and marts.
+
+![dbt Build DAG](assets/movie_dbt_build_graph.png)
+
+---
+
+## dbt Lineage Graph
+
+The lineage graph illustrates dependencies between source, staging, dimension, fact, mart, seed, snapshot, and test models.
+
+![dbt Lineage](assets/dbt_lineage.png)
+
 
 # 📊 Data Pipeline
 
