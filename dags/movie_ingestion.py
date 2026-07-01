@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 from airflow import DAG
-from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
 
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
@@ -19,15 +19,15 @@ with DAG(
     schedule="@daily",
     catchup=False,
     default_args=default_args,
-    tags=["snowflake", "ingestion", "Movielens"],
+    tags=["snowflake", "ingestion", "movie_analytics"],
 ) as dag:
 
-    load_movies = SnowflakeOperator(
+    load_movies = SQLExecuteQueryOperator(
         task_id="load_movies",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="""
         COPY INTO PROJECT_DB.RAW.RAW_MOVIES
-        FROM @netflixstage/movies.csv
+        FROM @NETFLIX_S3_STAGE/Netflix_Dataset/movies.csv
         FILE_FORMAT = (
             TYPE = CSV
             FIELD_OPTIONALLY_ENCLOSED_BY='"'
@@ -36,12 +36,12 @@ with DAG(
         """,
     )
 
-    load_ratings = SnowflakeOperator(
+    load_ratings = SQLExecuteQueryOperator(
         task_id="load_ratings",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="""
         COPY INTO PROJECT_DB.RAW.RAW_RATINGS
-        FROM @netflixstage/ratings.csv
+        FROM @NETFLIX_S3_STAGE/Netflix_Dataset/ratings.csv
         FILE_FORMAT = (
             TYPE = CSV
             FIELD_OPTIONALLY_ENCLOSED_BY='"'
@@ -50,12 +50,12 @@ with DAG(
         """,
     )
 
-    load_tags = SnowflakeOperator(
+    load_tags = SQLExecuteQueryOperator(
         task_id="load_tags",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="""
         COPY INTO PROJECT_DB.RAW.RAW_TAGS
-        FROM @netflixstage/tags.csv
+        FROM @NETFLIX_S3_STAGE/Netflix_Dataset/tags.csv
         FILE_FORMAT = (
             TYPE = CSV
             FIELD_OPTIONALLY_ENCLOSED_BY='"'
@@ -65,12 +65,12 @@ with DAG(
         """,
     )
 
-    load_links = SnowflakeOperator(
+    load_links = SQLExecuteQueryOperator(
         task_id="load_links",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="""
         COPY INTO PROJECT_DB.RAW.RAW_LINKS
-        FROM @netflixstage/links.csv
+        FROM @NETFLIX_S3_STAGE/Netflix_Dataset/links.csv
         FILE_FORMAT = (
             TYPE = CSV
             FIELD_OPTIONALLY_ENCLOSED_BY='"'
@@ -79,12 +79,12 @@ with DAG(
         """,
     )
 
-    load_genome_scores = SnowflakeOperator(
+    load_genome_scores = SQLExecuteQueryOperator(
         task_id="load_genome_scores",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="""
         COPY INTO PROJECT_DB.RAW.RAW_GENOME_SCORES
-        FROM @netflixstage/genome_scores.csv
+        FROM @NETFLIX_S3_STAGE/Netflix_Dataset/genome_scores.csv
         FILE_FORMAT = (
             TYPE = CSV
             FIELD_OPTIONALLY_ENCLOSED_BY='"'
@@ -93,12 +93,12 @@ with DAG(
         """,
     )
 
-    load_genome_tags = SnowflakeOperator(
+    load_genome_tags = SQLExecuteQueryOperator(
         task_id="load_genome_tags",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="""
         COPY INTO PROJECT_DB.RAW.RAW_GENOME_TAGS
-        FROM @netflixstage/genome_tags.csv
+        FROM @NETFLIX_S3_STAGE/Netflix_Dataset/genome_tags.csv
         FILE_FORMAT = (
             TYPE = CSV
             FIELD_OPTIONALLY_ENCLOSED_BY='"'

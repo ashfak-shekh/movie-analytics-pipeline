@@ -251,25 +251,18 @@ dbt tests include:
 
 **Ashfak Shekh**
 
-Apache Airflow
+### 🛠️ Technologies Used
 
-Cosmos
-
-dbt Core
-
-Snowflake
-
-AWS S3
-
-Docker
-
-Python
-
-SQL
-
-Git
-
-GitHub
+- Apache Airflow
+- Cosmos
+- dbt Core
+- Snowflake
+- AWS S3
+- Docker
+- Python
+- SQL
+- Git
+- GitHub
 
 ---
 

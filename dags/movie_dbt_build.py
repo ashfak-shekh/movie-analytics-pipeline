@@ -17,7 +17,7 @@ profile_config = ProfileConfig(
     profile_name="movie_analytics",
     target_name="dev",
     profile_mapping=SnowflakeUserPasswordProfileMapping(
-        conn_id="snowflake_conn",
+        conn_id="snowflake_conn1",
         profile_args={
                 "database": "PROJECT_DB",
                 "schema": "DEV",
