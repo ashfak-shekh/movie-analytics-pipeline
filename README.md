@@ -82,7 +82,7 @@ Fact Models
 Analytics-ready Mart Models
 
 Apache Airflow, integrated with Cosmos, orchestrates the ingestion pipeline and dbt transformation workflow.
-
+```
 ---
 # 📸 Screenshots
 
